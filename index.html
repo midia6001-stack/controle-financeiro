@@ -8,10 +8,16 @@
   <!-- DESIGN ANTIGO -->
   <link rel="stylesheet" href="style.css">
 </head>
-<body><script>
+<body><script><script>
   function fecharPopup() {
-    document.getElementById("popup-overlay").style.display = "none";
+    const overlay = document.getElementById("popup-overlay");
+    overlay.style.opacity = "0";
+    overlay.style.pointerEvents = "none";
+    setTimeout(() => overlay.remove(), 300);
   }
+</script>
+
+
 </script>
 
 
@@ -72,5 +78,6 @@
 
 </body>
 </html>
+
 
 
