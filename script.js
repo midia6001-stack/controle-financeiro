@@ -1,61 +1,52 @@
 let movimentacoes = [];
-
-document.getElementById("btnAdicionar").addEventListener("click", adicionar);
-document.getElementById("mesSelecionado").addEventListener("change", atualizarTela);
+let entradas = 0;
+let saidas = 0;
 
 function adicionar() {
-    const descricao = document.getElementById("descricao").value;
-    const valor = Number(document.getElementById("valor").value);
-    const tipo = document.getElementById("tipo").value;
-    const data = document.getElementById("data").value;
+  const descricao = document.getElementById("descricao").value;
+  const valor = parseFloat(document.getElementById("valor").value);
+  const tipo = document.getElementById("tipo").value;
 
-    if (!descricao || valor <= 0 || !data) {
-        alert("Preencha descrição, valor e data.");
-        return;
-    }
+  if (!descricao || isNaN(valor) || valor <= 0) {
+    alert("Preencha corretamente.");
+    return;
+  }
 
-    movimentacoes.push({ descricao, valor, tipo, data });
+  const mov = { descricao, valor, tipo };
+  movimentacoes.push(mov);
 
-    salvarDados();
-    atualizarTela();
+  if (tipo === "entrada") entradas += valor;
+  else saidas += valor;
 
-    document.getElementById("descricao").value = "";
-    document.getElementById("valor").value = "";
+  atualizarTela();
+  limparCampos();
+}
+
+function remover(index) {
+  const mov = movimentacoes[index];
+
+  if (mov.tipo === "entrada") entradas -= mov.valor;
+  else saidas -= mov.valor;
+
+  movimentacoes.splice(index, 1);
+  atualizarTela();
 }
 
 function atualizarTela() {
-    const lista = document.getElementById("lista");
-    lista.innerHTML = "";
+  document.getElementById("lista").innerHTML = "";
 
-    let totalEntradas = 0;
-    let totalSaidas = 0;
+  movimentacoes.forEach((mov, index) => {
+    const li = document.createElement("li");
+    li.innerHTML = `
+      ${mov.descricao} - R$ ${mov.valor.toFixed(2)} (${mov.tipo})
+      <button onclick="remover(${index})">❌</button>
+    `;
+    document.getElementById("lista").appendChild(li);
+  });
 
-    const mesSelecionado = document.getElementById("mesSelecionado").value;
-
-    movimentacoes.forEach((item, index) => {
-        if (mesSelecionado && !item.data.startsWith(mesSelecionado)) return;
-
-        const li = document.createElement("li");
-        li.textContent = `${item.data} - ${item.descricao} - R$ ${item.valor.toFixed(2)}`;
-        lista.appendChild(li);
-
-        if (item.tipo === "entrada") totalEntradas += item.valor;
-        else totalSaidas += item.valor;
-    });
-
-    document.getElementById("totalEntradas").innerText = totalEntradas.toFixed(2);
-    document.getElementById("totalSaidas").innerText = totalSaidas.toFixed(2);
-    document.getElementById("saldoMes").innerText = (totalEntradas - totalSaidas).toFixed(2);
+  document.getElementById("saldo").innerText =
+    (entradas - saidas).toFixed(2);
 }
 
-function salvarDados() {
-    localStorage.setItem("movimentacoes", JSON.stringify(movimentacoes));
-}
-
-function carregarDados() {
-    const dados = localStorage.getItem("movimentacoes");
-    if (dados) movimentacoes = JSON.parse(dados);
-    atualizarTela();
-}
-
-carregarDados();
+function limparCampos() {
+  documen
