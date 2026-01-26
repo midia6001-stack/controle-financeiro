@@ -1,75 +1,50 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <title>Controle Financeiro</title>
-    <link rel="stylesheet" href="style.css">
-</head><!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-P8WQ0JLYDB"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <meta charset="UTF-8">
+  <title>Controle Financeiro</title>
 
-  gtag('config', 'G-P8WQ0JLYDB');
-</script>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P8WQJLYDB"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-P8WQJLYDB');
+  </script>
+
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    input, select, button { margin: 5px 0; padding: 8px; }
+    ul { list-style: none; padding: 0; }
+    li { margin: 5px 0; }
+  </style>
+</head>
+
 <body>
 
-<div class="container">
+<h1>Controle Financeiro</h1>
 
-    <h1>Controle Financeiro</h1>
+<h3>Nova movimentação</h3>
 
-    <!-- DASHBOARD -->
-    <div class="dashboard">
-        <div class="dash-card entrada">
-            <p>Entradas</p>
-            <h2>R$ <span id="totalEntradas">0.00</span></h2>
-        </div><ul id="lista"></ul>
-<p>Saldo: R$ <span id="saldo">0.00</span></p>
+<input id="descricao" type="text" placeholder="Descrição">
+<br>
+<input id="valor" type="number" placeholder="Valor">
+<br>
+<select id="tipo">
+  <option value="entrada">Entrada</option>
+  <option value="saida">Saída</option>
+</select>
+<br>
+<button onclick="adicionar()">Adicionar</button>
 
-        <div class="dash-card saida">
-            <p>Saídas</p>
-            <h2>R$ <span id="totalSaidas">0.00</span></h2>
-        </div>
+<h3>Movimentações</h3>
+<ul id="lista"></ul>
 
-        <div class="dash-card saldo">
-            <p>Saldo</p>
-            <h2>R$ <span id="saldoMes">0.00</span></h2>
-        </div>
-    </div>
+<h3>Saldo: R$ <span id="saldo">0.00</span></h3>
 
-    <!-- DATA -->
-    <div class="card">
-        <h2>Selecionar Mês / Data</h2>
-        <input type="month" id="mesSelecionado">
-        <input type="date" id="data">
-    </div>
-
-    <!-- FORM -->
-    <div class="card">
-        <h2>Nova Movimentação</h2>
-        <input type="text" id="descricao" placeholder="Descrição">
-        <input type="number" id="valor" placeholder="Valor">
-        <select id="tipo">
-            <option value="entrada">Entrada</option>
-            <option value="saida">Saída</option>
-        </select>
-        <button id="btnAdicionar">Adicionar<<button onclick="adicionar()">Adicionar</button>
-
-    </div>
-
-    <!-- LISTA -->
-    <div class="card">
-        <h2>Movimentações</h2>
-        <ul id="lista"></ul>
-    </div>
-
-</div>
-
-<script src=<script src="script.js"></script>
+<!-- SCRIPT SEMPRE NO FINAL -->
+<script src="script.js"></script>
 
 </body>
 </html>
-
-
-
