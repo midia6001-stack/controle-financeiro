@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Controle Financeiro</title>
 
-  <!-- Google Analytics -->
+  <!-- Google Analytics (opcional, pode remover se quiser) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-P8WQJLYDB"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -13,38 +13,39 @@
     gtag('config', 'G-P8WQJLYDB');
   </script>
 
-  <style>
-    body { font-family: Arial, sans-serif; padding: 20px; }
-    input, select, button { margin: 5px 0; padding: 8px; }
-    ul { list-style: none; padding: 0; }
-    li { margin: 5px 0; }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<h1>Controle Financeiro</h1>
+<div class="container">
 
-<h3>Nova movimentação</h3>
+  <h1>Controle Financeiro</h1>
 
-<input id="descricao" type="text" placeholder="Descrição">
-<br>
-<input id="valor" type="number" placeholder="Valor">
-<br>
-<select id="tipo">
-  <option value="entrada">Entrada</option>
-  <option value="saida">Saída</option>
-</select>
-<br>
-<button onclick="adicionar()">Adicionar</button>
+  <div class="card">
+    <h2>Nova Movimentação</h2>
 
-<h3>Movimentações</h3>
-<ul id="lista"></ul>
+    <input type="text" id="descricao" placeholder="Descrição">
+    <input type="number" id="valor" placeholder="Valor">
 
-<h3>Saldo: R$ <span id="saldo">0.00</span></h3>
+    <select id="tipo">
+      <option value="entrada">Entrada</option>
+      <option value="saida">Saída</option>
+    </select>
 
-<!-- SCRIPT SEMPRE NO FINAL -->
+    <button onclick="adicionar()">Adicionar</button>
+  </div>
+
+  <div class="card">
+    <h2>Movimentações</h2>
+    <ul id="lista"></ul>
+  </div>
+
+  <div class="saldo">
+    Saldo: R$ <span id="saldo">0.00</span>
+  </div>
+
+</div>
+
 <script src="script.js"></script>
-
 </body>
 </html>
