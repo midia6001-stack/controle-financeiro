@@ -2,53 +2,35 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Dashboard Financeiro</title>
+  <title>Controle Financeiro</title>
   <link rel="stylesheet" href="style.css">
-
-  <!-- Chart.js -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
-<header class="topbar">
-  <h1>Dashboard Financeiro</h1>
-</header>
+<div class="dashboard">
 
-<main class="container">
+  <header class="header">
+    <h1>Controle Financeiro</h1>
+  </header>
 
-  <!-- KPIs -->
-  <section class="kpis">
-    <div class="kpi blue">
+  <section class="cards">
+    <div class="card blue">
       <span>Entradas</span>
-      <strong id="kpi-entradas">R$ 0,00</strong>
+      <strong id="entradas">R$ 0,00</strong>
     </div>
 
-    <div class="kpi orange">
+    <div class="card red">
       <span>Saídas</span>
-      <strong id="kpi-saidas">R$ 0,00</strong>
+      <strong id="saidas">R$ 0,00</strong>
     </div>
 
-    <div class="kpi green">
-      <span>Resultado</span>
-      <strong id="kpi-saldo">R$ 0,00</strong>
-    </div>
-  </section>
-
-  <!-- Gráficos -->
-  <section class="charts">
-    <div class="card">
-      <h2>Entradas x Saídas</h2>
-      <canvas id="graficoBarra"></canvas>
-    </div>
-
-    <div class="card">
-      <h2>Resultado Mensal</h2>
-      <canvas id="graficoLinha"></canvas>
+    <div class="card green">
+      <span>Saldo</span>
+      <strong id="saldo">R$ 0,00</strong>
     </div>
   </section>
 
-  <!-- Lançamentos -->
-  <section class="card">
+  <section class="panel">
     <h2>Nova Movimentação</h2>
 
     <input id="descricao" placeholder="Descrição">
@@ -62,7 +44,12 @@
     <button onclick="adicionar()">Adicionar</button>
   </section>
 
-</main>
+  <section class="panel">
+    <h2>Movimentações</h2>
+    <ul id="lista"></ul>
+  </section>
+
+</div>
 
 <script src="script.js"></script>
 </body>
