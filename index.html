@@ -2,30 +2,57 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
-  <title>Controle Financeiro</title>
-
-  <!-- Google Analytics (opcional, pode remover se quiser) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-P8WQJLYDB"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-P8WQJLYDB');
-  </script>
-
+  <title>Dashboard Financeiro</title>
   <link rel="stylesheet" href="style.css">
+
+  <!-- Chart.js -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
-<div class="container">
+<header class="topbar">
+  <h1>Dashboard Financeiro</h1>
+</header>
 
-  <h1>Controle Financeiro</h1>
+<main class="container">
 
-  <div class="card">
+  <!-- KPIs -->
+  <section class="kpis">
+    <div class="kpi blue">
+      <span>Entradas</span>
+      <strong id="kpi-entradas">R$ 0,00</strong>
+    </div>
+
+    <div class="kpi orange">
+      <span>Saídas</span>
+      <strong id="kpi-saidas">R$ 0,00</strong>
+    </div>
+
+    <div class="kpi green">
+      <span>Resultado</span>
+      <strong id="kpi-saldo">R$ 0,00</strong>
+    </div>
+  </section>
+
+  <!-- Gráficos -->
+  <section class="charts">
+    <div class="card">
+      <h2>Entradas x Saídas</h2>
+      <canvas id="graficoBarra"></canvas>
+    </div>
+
+    <div class="card">
+      <h2>Resultado Mensal</h2>
+      <canvas id="graficoLinha"></canvas>
+    </div>
+  </section>
+
+  <!-- Lançamentos -->
+  <section class="card">
     <h2>Nova Movimentação</h2>
 
-    <input type="text" id="descricao" placeholder="Descrição">
-    <input type="number" id="valor" placeholder="Valor">
+    <input id="descricao" placeholder="Descrição">
+    <input id="valor" type="number" placeholder="Valor">
 
     <select id="tipo">
       <option value="entrada">Entrada</option>
@@ -33,18 +60,9 @@
     </select>
 
     <button onclick="adicionar()">Adicionar</button>
-  </div>
+  </section>
 
-  <div class="card">
-    <h2>Movimentações</h2>
-    <ul id="lista"></ul>
-  </div>
-
-  <div class="saldo">
-    Saldo: R$ <span id="saldo">0.00</span>
-  </div>
-
-</div>
+</main>
 
 <script src="script.js"></script>
 </body>
