@@ -7,7 +7,7 @@ function adicionar() {
   const tipo = document.getElementById("tipo").value;
 
   if (!descricao || isNaN(valor) || valor <= 0) {
-    alert("Preencha descrição e valor corretamente.");
+    alert("Preencha corretamente.");
     return;
   }
 
@@ -15,8 +15,8 @@ function adicionar() {
   const li = document.createElement("li");
 
   li.innerHTML = `
-    ${descricao} - R$ ${valor.toFixed(2)}
-    <button onclick="remover(this, ${valor}, '${tipo}')">❌</button>
+    ${descricao} - ${tipo} - R$ ${valor.toFixed(2)}
+    <button onclick="remover(this, ${valor}, '${tipo}')">🗑</button>
   `;
 
   lista.appendChild(li);
@@ -24,8 +24,7 @@ function adicionar() {
   if (tipo === "entrada") entradas += valor;
   else saidas += valor;
 
-  document.getElementById("saldo").innerText =
-    (entradas - saidas).toFixed(2);
+  atualizarSaldo();
 
   document.getElementById("descricao").value = "";
   document.getElementById("valor").value = "";
@@ -37,6 +36,10 @@ function remover(botao, valor, tipo) {
   if (tipo === "entrada") entradas -= valor;
   else saidas -= valor;
 
+  atualizarSaldo();
+}
+
+function atualizarSaldo() {
   document.getElementById("saldo").innerText =
     (entradas - saidas).toFixed(2);
 }
