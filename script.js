@@ -1,5 +1,20 @@
 let saldo = 0;
+let movimentacoes = [];
 
+// 🔄 CARREGAR DADOS AO ABRIR O SITE
+window.onload = function () {
+  const dadosSalvos = localStorage.getItem("controleFinanceiro");
+
+  if (dadosSalvos) {
+    const dados = JSON.parse(dadosSalvos);
+    saldo = dados.saldo;
+    movimentacoes = dados.movimentacoes;
+
+    atualizarTela();
+  }
+};
+
+// ➕ ADICIONAR MOVIMENTAÇÃO
 function adicionar() {
   const descricao = document.getElementById("descricao").value;
   const valor = parseFloat(document.getElementById("valor").value);
@@ -10,32 +25,68 @@ function adicionar() {
     return;
   }
 
-  const lista = document.getElementById("lista");
-  const item = document.createElement("li");
+  const movimento = {
+    descricao,
+    valor,
+    tipo
+  };
+
+  movimentacoes.push(movimento);
 
   if (tipo === "entrada") {
     saldo += valor;
-    item.textContent = `${descricao} + R$ ${valor.toFixed(2)}`;
   } else {
     saldo -= valor;
-    item.textContent = `${descricao} - R$ ${valor.toFixed(2)}`;
   }
 
-  lista.appendChild(item);
-  document.getElementById("saldo").textContent = saldo.toFixed(2);
+  salvarDados();
+  atualizarTela();
 
   document.getElementById("descricao").value = "";
   document.getElementById("valor").value = "";
 }
 
+// 🧾 ATUALIZAR LISTA E SALDO
+function atualizarTela() {
+  const lista = document.getElementById("lista");
+  lista.innerHTML = "";
+
+  movimentacoes.forEach((m) => {
+    const item = document.createElement("li");
+
+    if (m.tipo === "entrada") {
+      item.textContent = `${m.descricao} + R$ ${m.valor.toFixed(2)}`;
+    } else {
+      item.textContent = `${m.descricao} - R$ ${m.valor.toFixed(2)}`;
+    }
+
+    lista.appendChild(item);
+  });
+
+  document.getElementById("saldo").textContent = saldo.toFixed(2);
+}
+
+// 💾 SALVAR NO LOCALSTORAGE
+function salvarDados() {
+  const dados = {
+    saldo,
+    movimentacoes
+  };
+
+  localStorage.setItem("controleFinanceiro", JSON.stringify(dados));
+}
+
+// 🗑 APAGAR TUDO
 function limparTudo() {
   if (!confirm("Deseja apagar todas as movimentações?")) return;
 
-  document.getElementById("lista").innerHTML = "";
   saldo = 0;
-  document.getElementById("saldo").textContent = "0.00";
+  movimentacoes = [];
+  localStorage.removeItem("controleFinanceiro");
+  atualizarTela();
 }
 
+// ❌ FECHAR POP-UP
 function fecharPopup() {
   document.getElementById("popup-overlay").remove();
 }
