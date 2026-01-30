@@ -112,3 +112,8 @@ ul li {
   color: #fff;
   cursor: pointer;
 }
+
+canvas {
+  max-width: 100%;
+  margin-top: 10px;
+}
