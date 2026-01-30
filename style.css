@@ -1,50 +1,114 @@
-/* POP-UP CENTRAL */
-#popup-overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f4fd8, #0a2e73);
   display: flex;
-  align-items: center;
   justify-content: center;
-  z-index: 9999;
-  transition: opacity 0.3s ease;
+  align-items: center;
 }
 
-
-#popup {
-  background: #ffffff;
-  padding: 28px;
-  width: 320px;
-  border-radius: 18px;
-  text-align: center;
+/* APP */
+.app {
+  background: #f7f9fc;
+  width: 360px;
+  padding: 20px;
+  border-radius: 16px;
   box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-  animation: zoomIn 0.25s ease;
 }
 
-#popup h2 {
+.app h1 {
+  text-align: center;
+  color: #0f4fd8;
+}
+
+.card {
+  background: #ffffff;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+.card h2 {
+  margin-top: 0;
+}
+
+input, select {
+  width: 100%;
+  padding: 10px;
   margin-bottom: 10px;
-  color: #1f3c88;
+  border-radius: 8px;
+  border: 1px solid #ccc;
 }
 
-#popup p {
-  margin-bottom: 10px;
-  color: #555;
-}
-
-#popup button {
-  margin-top: 18px;
+.btn {
   width: 100%;
   padding: 12px;
-  border-radius: 25px;
   border: none;
-  background: linear-gradient(135deg, #1f6ae1, #0b4cb8);
+  border-radius: 10px;
+  background: linear-gradient(135deg, #0f4fd8, #0a2e73);
   color: #fff;
   font-size: 15px;
   cursor: pointer;
 }
 
-@keyframes zoomIn {
-  from { transform: scale(0.85); opacity: 0; }
-  to { transform: scale(1); opacity: 1; }
+.btn:hover {
+  opacity: 0.9;
 }
 
+.limpar {
+  background: linear-gradient(135deg, #d80f0f, #730a0a);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  padding: 8px 0;
+  border-bottom: 1px solid #ddd;
+}
+
+.saldo {
+  background: linear-gradient(135deg, #2e9d45, #1f6f32);
+  color: #fff;
+  padding: 12px;
+  text-align: center;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+/* POP-UP */
+#popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.popup {
+  background: #fff;
+  padding: 25px;
+  border-radius: 16px;
+  text-align: center;
+  width: 300px;
+}
+
+.popup button {
+  margin-top: 15px;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #0f4fd8, #0a2e73);
+  color: #fff;
+  cursor: pointer;
+}
