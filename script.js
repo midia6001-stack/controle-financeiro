@@ -18,17 +18,16 @@ window.onload = function () {
 
 // ➕ ADICIONAR
 function adicionar() {
-  const data = document.getElementById("data").value;
   const descricao = document.getElementById("descricao").value;
   const valor = parseFloat(document.getElementById("valor").value);
   const tipo = document.getElementById("tipo").value;
 
-  if (!data || !descricao || isNaN(valor)) {
-    alert("Preencha data, descrição e valor.");
+  if (!descricao || isNaN(valor)) {
+    alert("Preencha descrição e valor.");
     return;
   }
 
-  movimentacoes.push({ data, descricao, valor, tipo });
+  movimentacoes.push({ descricao, valor, tipo });
 
   saldo += tipo === "entrada" ? valor : -valor;
 
@@ -47,14 +46,10 @@ function atualizarTela() {
 
   movimentacoes.forEach(m => {
     const li = document.createElement("li");
-    const dataFormatada = new Date(m.data).toLocaleDateString("pt-BR");
-
     li.textContent =
-      `${dataFormatada} | ${m.descricao} ` +
-      (m.tipo === "entrada"
-        ? `+ R$ ${m.valor.toFixed(2)}`
-        : `- R$ ${m.valor.toFixed(2)}`);
-
+      m.tipo === "entrada"
+        ? `${m.descricao} + R$ ${m.valor.toFixed(2)}`
+        : `${m.descricao} - R$ ${m.valor.toFixed(2)}`;
     lista.appendChild(li);
   });
 
@@ -79,7 +74,7 @@ function limparTudo() {
   atualizarGrafico();
 }
 
-// 📊 GRÁFICO
+// 📊 CRIAR GRÁFICO
 function criarGrafico() {
   const ctx = document.getElementById("grafico").getContext("2d");
 
@@ -87,20 +82,26 @@ function criarGrafico() {
     type: "bar",
     data: {
       labels: ["Entradas", "Saídas"],
-      datasets: [{
-        data: [0, 0],
-        backgroundColor: ["#2e9d45", "#d80f0f"]
-      }]
+      datasets: [
+        {
+          label: "Valores (R$)",
+          data: [0, 0],
+          backgroundColor: ["#2e9d45", "#d80f0f"]
+        }
+      ]
     },
     options: {
       responsive: true,
-      plugins: { legend: { display: false } }
+      plugins: {
+        legend: { display: false }
+      }
     }
   });
 
   atualizarGrafico();
 }
 
+// 🔄 ATUALIZAR GRÁFICO
 function atualizarGrafico() {
   let entradas = 0;
   let saidas = 0;
