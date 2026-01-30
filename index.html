@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <title>Controle Financeiro</title>
   <link rel="stylesheet" href="style.css">
-</head>
+</head><script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <body>
 
 <!-- POP-UP -->
@@ -21,7 +21,11 @@
 <div class="app">
   <h1>Controle Financeiro</h1>
 
-  <div class="card">
+  <div class="card"><div class="card">
+  <h2>Resumo Gráfico</h2>
+  <canvas id="grafico"></canvas>
+</div>
+
     <h2>Nova Movimentação</h2>
 
    <input type="date" id="data">
@@ -51,4 +55,5 @@
 <script src="script.js"></script>
 </body>
 </html>
+
 
