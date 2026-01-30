@@ -3,37 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <title>Controle Financeiro</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- DESIGN ANTIGO -->
   <link rel="stylesheet" href="style.css">
 </head>
-<body><script><script>
-  function fecharPopup() {
-    const overlay = document.getElementById("popup-overlay");
-    overlay.style.opacity = "0";
-    overlay.style.pointerEvents = "none";
-    setTimeout(() => overlay.remove(), 300);
-  }
-</script>
+<body>
 
-
-</script>
-
-
-<!-- POP-UP (MODELO 3 - SIMPLES) -->
+<!-- POP-UP -->
 <div id="popup-overlay">
-  <div id="popup">
-    <h2>Seja bem-vindo</h2>
-    <p>Seja bem-vindo ao site, está em fase de teste</p>
+  <div class="popup">
+    <h2>Seja bem-vindo 👋</h2>
+    <p>Seja bem-vindo ao site,<br>está em fase de teste.</p>
     <strong>Alex</strong>
     <button onclick="fecharPopup()">Entendi</button>
   </div>
 </div>
 
-<!-- SITE ORIGINAL (NÃO MEXIDO) -->
-<div class="container">
-
+<!-- APP -->
+<div class="app">
   <h1>Controle Financeiro</h1>
 
   <div class="card">
@@ -47,7 +32,7 @@
       <option value="saida">Saída</option>
     </select>
 
-    <button onclick="adicionar()">Adicionar</button>
+    <button class="btn" onclick="adicionar()">Adicionar</button>
   </div>
 
   <div class="card">
@@ -59,25 +44,9 @@
     Saldo: R$ <span id="saldo">0.00</span>
   </div>
 
+  <button class="btn limpar" onclick="limparTudo()">Apagar tudo</button>
 </div>
 
-<!-- JS ORIGINAL -->
 <script src="script.js"></script>
-
-<!-- POP-UP -->
-<div id="popup-overlay">
-  <div id="popup">
-    <h2>Seja bem-vindo 👋</h2>
-    <p>Seja bem-vindo ao site,<br>está em fase de teste.</p>
-    <strong>Alex</strong>
-    <button onclick="fecharPopup()">Entendi</button>
-  </div>
-</div>
-
-</script>
-
 </body>
 </html>
-
-
-
